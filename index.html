@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta Comercial — Mike Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C9A96E;
+    --gold-light: #E8D5B0;
+    --gold-pale: #F7F0E3;
+    --dark: #0E0E0E;
+    --dark-2: #1A1A1A;
+    --dark-3: #2A2A2A;
+    --mid: #5A5A5A;
+    --light: #F5F2ED;
+    --white: #FFFFFF;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--dark);
+    color: var(--white);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 40px;
+    position: relative;
+    background: var(--dark);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; left: 50%;
+    transform: translateX(-50%);
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(201,169,110,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(52px, 8vw, 96px);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-family: var(--serif);
+    font-size: clamp(18px, 3vw, 26px);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+
+  .hero-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.7s forwards;
+  }
+
+  .hero-desc {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.6);
+    max-width: 540px;
+    line-height: 1.8;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.8s forwards;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 1.2s forwards;
+  }
+
+  .scroll-hint span {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  /* SECTION BASE */
+  section {
+    padding: 120px 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  .section-text {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.85;
+    max-width: 600px;
+  }
+
+  /* DIVIDER LINE */
+  .divider {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201,169,110,0.3), transparent);
+  }
+
+  /* CONTEXT SECTION */
+  .context-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-top: 64px;
+  }
+
+  .context-item {
+    border-left: 1px solid rgba(201,169,110,0.25);
+    padding-left: 28px;
+  }
+
+  .context-item h3 {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    color: var(--white);
+  }
+
+  .context-item p {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.8;
+  }
+
+  /* PLANS */
+  .plans-section {
+    padding: 120px 40px;
+    background: var(--dark-2);
+  }
+
+  .plans-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 64px;
+  }
+
+  .plan-card {
+    border: 1px solid rgba(201,169,110,0.2);
+    padding: 48px 40px;
+    position: relative;
+    transition: border-color 0.3s ease;
+  }
+
+  .plan-card:hover {
+    border-color: rgba(201,169,110,0.5);
+  }
+
+  .plan-card.featured {
+    border-color: var(--gold);
+    background: linear-gradient(135deg, rgba(201,169,110,0.05) 0%, transparent 60%);
+  }
+
+  .plan-badge {
+    position: absolute;
+    top: -12px; right: 32px;
+    background: var(--gold);
+    color: var(--dark);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+  }
+
+  .plan-number {
+    font-family: var(--serif);
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .plan-name {
+    font-family: var(--serif);
+    font-size: 30px;
+    font-weight: 300;
+    color: var(--white);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .plan-tagline {
+    font-size: 13px;
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 40px;
+    font-family: var(--serif);
+  }
+
+  .plan-price {
+    font-family: var(--serif);
+    font-size: 52px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .plan-price sup {
+    font-size: 22px;
+    vertical-align: super;
+  }
+
+  .plan-period {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 40px;
+    display: block;
+  }
+
+  .plan-divider {
+    height: 1px;
+    background: rgba(201,169,110,0.15);
+    margin-bottom: 32px;
+  }
+
+  .plan-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .plan-features li {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.65);
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    line-height: 1.6;
+  }
+
+  .plan-features li::before {
+    content: '';
+    width: 16px;
+    height: 1px;
+    background: var(--gold);
+    flex-shrink: 0;
+    margin-top: 10px;
+  }
+
+  /* DELIVERABLES */
+  .deliverables-list {
+    margin-top: 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .deliverable-row {
+    display: grid;
+    grid-template-columns: 48px 1fr auto;
+    align-items: start;
+    gap: 28px;
+    padding: 32px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .deliverable-row:first-child {
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .deliverable-num {
+    font-family: var(--serif);
+    font-size: 13px;
+    color: var(--gold);
+    padding-top: 4px;
+  }
+
+  .deliverable-content h4 {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    color: var(--white);
+  }
+
+  .deliverable-content p {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.75;
+    max-width: 520px;
+  }
+
+  .deliverable-tag {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(201,169,110,0.3);
+    padding: 4px 12px;
+    white-space: nowrap;
+    margin-top: 4px;
+  }
+
+  /* PROCESS */
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-top: 64px;
+  }
+
+  .process-step {
+    position: relative;
+  }
+
+  .process-step::after {
+    content: '';
+    position: absolute;
+    top: 16px;
+    right: -20px;
+    width: 40px;
+    height: 1px;
+    background: rgba(201,169,110,0.2);
+  }
+
+  .process-step:last-child::after { display: none; }
+
+  .step-num {
+    font-family: var(--serif);
+    font-size: 40px;
+    font-weight: 300;
+    color: rgba(201,169,110,0.2);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .step-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .step-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.7;
+  }
+
+  /* CTA */
+  .cta-section {
+    padding: 140px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(201,169,110,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-title {
+    font-family: var(--serif);
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+
+  .cta-title em { font-style: italic; color: var(--gold); }
+
+  .cta-sub {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.5);
+    max-width: 460px;
+    margin: 0 auto 56px;
+    line-height: 1.8;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--dark);
+    border: 1px solid var(--gold);
+    padding: 16px 40px;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: transparent;
+    color: var(--gold);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: rgba(255,255,255,0.6);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 16px 40px;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 48px 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .footer-brand {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .footer-brand em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .footer-info {
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50%       { opacity: 1; }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 700px) {
+    .context-grid { grid-template-columns: 1fr; gap: 40px; }
+    .plans-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .process-step::after { display: none; }
+    .deliverable-row { grid-template-columns: 40px 1fr; }
+    .deliverable-tag { display: none; }
+    section { padding: 80px 24px; }
+    .plans-section { padding: 80px 24px; }
+    .cta-section { padding: 100px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">Proposta Comercial Exclusiva</p>
+  <h1 class="hero-title">Mike <em>Store</em></h1>
+  <p class="hero-sub">Estratégia digital para moda de varejo</p>
+  <div class="hero-divider"></div>
+  <p class="hero-desc">
+    Uma parceria criada para transformar presença digital em vendas reais — 
+    com tráfego inteligente, conteúdo estratégico e análise que orienta cada decisão.
+  </p>
+  <div class="scroll-hint">
+    <span>Explorar</span>
+    <div class="scroll-line"></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CONTEXTO -->
+<section>
+  <span class="section-label">O Cenário</span>
+  <h2 class="section-title">Moda é emoção.<br><em>Resultado é estratégia.</em></h2>
+  <p class="section-text">
+    O varejo de moda vive de tendências — mas são dados, posicionamento e conteúdo 
+    consistente que constroem marcas duradouras e clientes que voltam. 
+    Esta proposta foi desenhada especificamente para a Mike Store.
+  </p>
+  <div class="context-grid">
+    <div class="context-item">
+      <h3>O que identifiquei</h3>
+      <p>Potencial de audiência não explorado, conteúdo sem direcionamento estratégico e tráfego pago sem análise de retorno orientada ao varejo de moda.</p>
+    </div>
+    <div class="context-item">
+      <h3>O que entregarei</h3>
+      <p>Uma estrutura completa de marketing digital — desde a captação do cliente certo até o roteiro de comunicação que converte visualização em compra.</p>
+    </div>
+    <div class="context-item">
+      <h3>Para quem é</h3>
+      <p>Lojas de varejo que querem parar de depender apenas de indicação e começar a construir um canal digital previsível e escalável.</p>
+    </div>
+    <div class="context-item">
+      <h3>Quando começa</h3>
+      <p>A implementação inicia na semana seguinte à aprovação. Os primeiros resultados de tráfego são visíveis ainda no primeiro mês de operação.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PLANOS -->
+<div class="plans-section">
+  <div class="plans-inner">
+    <span class="section-label">Planos</span>
+    <h2 class="section-title">Escolha o nível<br>de <em>investimento</em></h2>
+
+    <div class="plans-grid">
+      <!-- PLANO 1 -->
+      <div class="plan-card">
+        <span class="plan-number">Plano 01</span>
+        <h3 class="plan-name">Essencial</h3>
+        <p class="plan-tagline">Tráfego com inteligência comercial</p>
+        <div class="plan-price"><sup>R$</sup>1.000</div>
+        <span class="plan-period">investimento mensal</span>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>Gestão completa de tráfego pago (Meta Ads / Google)</li>
+          <li>Roteiros de conteúdo para feed, reels e stories</li>
+          <li>Análise comercial mensal com relatório de desempenho</li>
+          <li>Segmentação de público-alvo para varejo de moda</li>
+          <li>Reunião mensal de alinhamento estratégico</li>
+        </ul>
+      </div>
+
+      <!-- PLANO 2 -->
+      <div class="plan-card featured">
+        <span class="plan-badge">Recomendado</span>
+        <span class="plan-number">Plano 02</span>
+        <h3 class="plan-name">Completo</h3>
+        <p class="plan-tagline">Presença digital integrada e escalável</p>
+        <div class="plan-price"><sup>R$</sup>2.000</div>
+        <span class="plan-period">investimento mensal</span>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>Tudo do Plano Essencial incluso</li>
+          <li>Criação de calendário editorial mensal completo</li>
+          <li>Planejamento de datas sazonais e lançamentos da loja</li>
+          <li>Estratégia de conteúdo orgânico + pago integrados</li>
+          <li>Relatório avançado de ROI e análise de concorrência</li>
+          <li>Suporte prioritário via WhatsApp durante dias úteis</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ENTREGÁVEIS -->
+<section>
+  <span class="section-label">Entregáveis</span>
+  <h2 class="section-title">O que você<br><em>recebe</em></h2>
+
+  <div class="deliverables-list">
+    <div class="deliverable-row">
+      <span class="deliverable-num">01</span>
+      <div class="deliverable-content">
+        <h4>Gestão de Tráfego Pago</h4>
+        <p>Criação, configuração e otimização contínua de campanhas no Meta Ads e/ou Google. Segmentação estratégica voltada para o perfil de cliente da Mike Store — com foco em conversão e retorno sobre investimento.</p>
+      </div>
+      <span class="deliverable-tag">Ambos os planos</span>
+    </div>
+    <div class="deliverable-row">
+      <span class="deliverable-num">02</span>
+      <div class="deliverable-content">
+        <h4>Roteiros de Conteúdo</h4>
+        <p>Scripts detalhados para reels, stories e posts de feed — linguagem alinhada com o posicionamento da loja, pensados para engajar e converter o público de moda feminina/masculina do varejo.</p>
+      </div>
+      <span class="deliverable-tag">Ambos os planos</span>
+    </div>
+    <div class="deliverable-row">
+      <span class="deliverable-num">03</span>
+      <div class="deliverable-content">
+        <h4>Análise Comercial Mensal</h4>
+        <p>Relatório com métricas de desempenho, interpretação dos dados e recomendações estratégicas para o próximo período. Você entende exatamente onde está o retorno e onde estão as oportunidades.</p>
+      </div>
+      <span class="deliverable-tag">Ambos os planos</span>
+    </div>
+    <div class="deliverable-row">
+      <span class="deliverable-num">04</span>
+      <div class="deliverable-content">
+        <h4>Calendário Editorial Completo</h4>
+        <p>Planejamento mensal de todo o conteúdo: datas comemorativas, lançamentos de coleção, promoções sazonais e publicações recorrentes. Uma visão clara e organizada de toda a comunicação da Mike Store.</p>
+      </div>
+      <span class="deliverable-tag">Plano Completo</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROCESSO -->
+<section>
+  <span class="section-label">Como funciona</span>
+  <h2 class="section-title">Do briefing<br><em>ao resultado</em></h2>
+
+  <div class="process-steps">
+    <div class="process-step">
+      <div class="step-num">01</div>
+      <div class="step-title">Diagnóstico</div>
+      <p class="step-desc">Análise do perfil atual da loja, público, concorrência e oportunidades digitais.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">02</div>
+      <div class="step-title">Planejamento</div>
+      <p class="step-desc">Estruturação da estratégia de tráfego, calendário e roteiros com foco nos objetivos da Mike Store.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">03</div>
+      <div class="step-title">Execução</div>
+      <p class="step-desc">Publicação das campanhas, entrega dos conteúdos e monitoramento contínuo dos resultados.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">04</div>
+      <div class="step-title">Otimização</div>
+      <p class="step-desc">Análise mensal com ajustes para maximizar retorno e evolução constante da estratégia.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2 class="cta-title">Pronto para<br><em>crescer?</em></h2>
+  <p class="cta-sub">
+    Esta proposta tem validade de 10 dias corridos. 
+    Entre em contato e vamos definir o melhor plano para a Mike Store.
+  </p>
+  <div class="cta-buttons">
+    <a href="https://wa.me/" class="btn-primary">Fechar proposta</a>
+    <a href="mailto:" class="btn-ghost">Tirar dúvidas</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Mike <em>Store</em></div>
+  <div class="footer-info">
+    Proposta válida por 10 dias corridos<br>
+    Gerada com exclusividade para Mike Store · 2025
+  </div>
+</footer>
+
+</body>
+</html>
